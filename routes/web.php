@@ -31,13 +31,13 @@ Route::middleware(['auth'])->group(function() {
     Route::get('roles/{role}/edit', 'RoleController@edit')->name('roles.edit')->middleware('can:roles.edit');
 
     // Products
-    Route::post('products/store', 'ProductController@store')->name('products.store')->middleware('can:products.create');
-    Route::get('products', 'ProductController@index')->name('products.index')->middleware('can:products.index');
-    Route::get('products/create', 'ProductController@create')->name('products.create')->middleware('can:products.create');
-    Route::put('products/{role}', 'ProductController@update')->name('products.update')->middleware('can:products.edit');
-    Route::get('products/{role}', 'ProductController@show')->name('products.show')->middleware('can:products.show');
-    Route::delete('products/{role}', 'ProductController@destroy')->name('products.destroy')->middleware('can:products.destroy');
-    Route::get('products/{role}/edit', 'ProductController@edit')->name('products.edit')->middleware('can:products.edit');
+    Route::post('posts/store', 'PostController@store')->name('posts.store')->middleware('can:posts.create');
+    Route::get('posts', 'PostController@index')->name('posts.index')->middleware('can:posts.index');
+    Route::get('posts/create', 'PostController@create')->name('posts.create')->middleware('can:posts.create');
+    Route::put('posts/{role}', 'PostController@update')->name('posts.update')->middleware('can:posts.edit');
+    Route::get('posts/{role}', 'PostController@show')->name('posts.show')->middleware('can:posts.show');
+    Route::delete('posts/{role}', 'PostController@destroy')->name('posts.destroy')->middleware('can:posts.destroy');
+    Route::get('posts/{role}/edit', 'PostController@edit')->name('posts.edit')->middleware('can:posts.edit');
 
     // Users
     Route::get('users', 'UserController@index')->name('users.index')->middleware('can:users.index');
