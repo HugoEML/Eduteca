@@ -3,13 +3,13 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Posts</h4>
+                    <h4 class="card-title">Roles</h4>
                     <div class="text-right">
-                        @can('posts.create')
-                        <a class="btn btn-primary" href="{{ route('posts.create') }}">Subir Archivo</a>
+                        @can('roles.create')
+                        <a class="btn btn-primary" href="{{ route('roles.create') }}">Crear</a>
                         @endcan
                     </div>
                 </div>
@@ -18,34 +18,30 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Titulo</th>
-                                <th scope="col">Descripcion</th>
-                                <th scope="col">Autor</th>
-                                <th scope="col">Archivo</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Role</th>
                                 <th scope="col" colspan="3">&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($posts as $post)
+                            @foreach ($roles as $role)
                             <tr>
-                                <td>{{ $post->title}}</td>
-                                <td>{{ $post->description}}</td>
-                                <td>{{ $post->author}}</td>
-                                <td>{{ $post->file}}</td>
+                                <td>{{ $role->id}}</td>
+                                <td>{{ $role->name}}</td>
                                 <td width="10px">
-                                    @can('posts.show')
+                                    @can('roles.show')
                                     <a class="btn btn-sm btn-outline-dark"
-                                        href="{{ route('posts.show', $post) }}">Ver</a>
+                                        href="{{ route('roles.show', $role) }}">Ver</a>
                                     @endcan
                                 </td>
                                 <td width="10px">
-                                    @can('posts.edit')
-                                    <a class="btn btn-sm btn-info" href="{{ route('posts.edit', $post) }}">Editar</a>
+                                    @can('roles.edit')
+                                    <a class="btn btn-sm btn-info" href="{{ route('roles.edit', $role) }}">Editar</a>
                                     @endcan
                                 </td>
                                 <td width="10px">
-                                    @can('posts.destroy')
-                                    {!! Form::open(['route' => ['posts.destroy', $post], 'method' => 'DELETE']) !!}
+                                    @can('roles.destroy')
+                                    {!! Form::open(['route' => ['roles.destroy', $role], 'method' => 'DELETE']) !!}
                                     <button class="btn btn-sm btn-danger">Eliminar</button>
                                     {!! Form::close() !!}
                                     @endcan
@@ -54,9 +50,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
-                <div class="card-footer">
-                    {{ $posts->render() }}
                 </div>
             </div>
         </div>
