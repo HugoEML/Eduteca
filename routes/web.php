@@ -11,13 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', 'blog');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Web page
+Route::get('blog', 'PageController@blog')->name('blog');
+Route::get('blog/{slug}', 'PageController@post')->name('blog.show');
+Route::get('category/{slug}', 'PageController@category')->name('category');
+Route::get('tag/{slug}', 'PageController@tag')->name('tag');
+
+// Admin
+Route::resource('tags', 'TagController');
+Route::resource('categories', 'CategoryController');
 
 // Routes
 Route::middleware(['auth'])->group(function() {
