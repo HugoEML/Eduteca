@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -89,5 +90,14 @@ class PostController extends Controller
         $post->delete();
 
         return back()->with('info', 'Eliminado exitosamente');
+    }
+
+    public function category($slug)
+    {
+        $category = Category::where('slug', $slug)->pluck('id')->first();
+
+        $posts = Post::where('category_id', $category)->orderBy('id', 'DESC')->where('status', 'PUBLISHED')->paginate(3);
+        
+        return view('posts.index', compact('posts'));
     }
 }

@@ -30,7 +30,7 @@ Route::middleware(['auth'])->group(function() {
     Route::delete('roles/{role}', 'RoleController@destroy')->name('roles.destroy')->middleware('can:roles.destroy');
     Route::get('roles/{role}/edit', 'RoleController@edit')->name('roles.edit')->middleware('can:roles.edit');
 
-    // Products
+    // Posts
     Route::post('posts/store', 'PostController@store')->name('posts.store')->middleware('can:posts.create');
     Route::get('posts', 'PostController@index')->name('posts.index')->middleware('can:posts.index');
     Route::get('posts/create', 'PostController@create')->name('posts.create')->middleware('can:posts.create');
@@ -38,6 +38,9 @@ Route::middleware(['auth'])->group(function() {
     Route::get('posts/{post}', 'PostController@show')->name('posts.show')->middleware('can:posts.show');
     Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy')->middleware('can:posts.destroy');
     Route::get('posts/{post}/edit', 'PostController@edit')->name('posts.edit')->middleware('can:posts.edit');
+
+    // Route::get('posts/{slug}', 'PostController@category')->name('posts.category')->middleware('can:posts.index');
+    // Route::get('posts/{slug}', 'PostController@tag')->name('posts.tag')->middleware('can:posts.index');
 
     // Users
     Route::get('users', 'UserController@index')->name('users.index')->middleware('can:users.index');

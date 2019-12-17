@@ -4,15 +4,24 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <h3>{{ $post->title }}</h3>
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Post</h4>                    
-                </div>
+                @if ($post->file)
+                <img src="{{ $post->file }}" class="card-img-top" />
+                @endif
                 <div class="card-body">
-                   <p><strong>Titulo: </strong>{{ $post->title }}</p>
-                   <p><strong>Descripcion: </strong>{{ $post->description }}</p>
-                   <p><strong>Autor: </strong>{{ $post->author }}</p>
-                   <p><strong>Archivo: </strong>{{ $post->file }}</p>
+                    <p class="card-text">{{ $post->excerpt }}</p>
+                    <hr>
+                    {!! $post->description !!}
+                    <hr>
+                    <p class="card-text">Categoria:
+                        <a href="">{{ $post->category->name }}</a>
+                    </p>
+                    <p class="card-text">Etiquetas:
+                        @foreach ($post->tags as $tag)
+                        <a href="">{{ $tag->name }}</a>
+                        @endforeach
+                    </p>
                 </div>
             </div>
         </div>

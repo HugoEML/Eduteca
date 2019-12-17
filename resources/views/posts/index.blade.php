@@ -10,7 +10,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $post->title }}</h5>
                 <p class="card-text">{{ $post->excerpt }}</p>
-                <a href="#" class="btn btn-primary float-right">Ver mas...</a>
+                <a href="{{ route('posts.show', $post) }}" class="btn btn-primary float-right">Ver mas...</a>
             </div>
         </div><br>
         @endforeach
