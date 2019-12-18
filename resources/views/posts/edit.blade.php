@@ -9,7 +9,8 @@
                     <h4 class="card-title">Editar Mi Post</h4>                    
                 </div>
                 <div class="card-body">
-                    {!! Form::model($post, ['route' => ['posts.update', $post], 'method' => 'PUT']) !!}
+                    {!! Form::model($post, ['route' => ['posts.update', $post], 'method' => 'PUT',
+                    'files' => true]) !!}
                         @include('posts.partials.form')
                     {!! Form::close() !!}
                 </div>

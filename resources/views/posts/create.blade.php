@@ -9,7 +9,7 @@
                     <h4 class="card-title">Crear Nuevo Post</h4>                    
                 </div>
                 <div class="card-body">
-                    {!! Form::open(['route' => ['posts.store']]) !!}
+                    {!! Form::open(['route' => ['posts.store', 'files' => true]]) !!}
                         @include('posts.partials.form')
                     {!! Form::close() !!}
                 </div>

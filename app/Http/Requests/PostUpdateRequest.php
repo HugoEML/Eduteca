@@ -24,17 +24,18 @@ class PostUpdateRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required',
+            'title' => 'required',
             'slug' => 'required|unique:posts,slug,' . $this->post,
             'user_id' => 'required|integer',
             'category_id' => 'required|integer',
             'tags' => 'required|array',
             'description' => 'required',
             'status' => 'required|in:DRAFT,PUBLISHED',
+            'file' => 'file|mimes:jpg,jpeg,png'
         ];
 
-        if($this->get('file'))
-            $rules = array_merge($rules, ['file' => 'mimes:jpg,jpeg,png']);
+        // if($this->get('file'))
+        //     $rules = array_merge($rules, ['file' => 'mimes:jpg,jpeg,png']);
 
         return $rules;
     }
