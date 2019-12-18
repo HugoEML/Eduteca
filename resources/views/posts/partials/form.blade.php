@@ -54,6 +54,7 @@
 </div>
 
 @section('scripts')
+<script src="/public/vendor/ckeditor/ckeditor.js"></script>
   <script>
 
   document.addEventListener("DOMContentLoaded", function(e) {
@@ -64,6 +65,11 @@
       slug.value = string_to_slug(name.value);
     }
   });
+
+  CKEDITOR.config.height = 400;
+  CKEDITOR.config.width = 'auto';
+
+  CKEDITOR.replace('description');
 
   function string_to_slug (str) {
     str = str.replace(/^\s+|\s+$/g, ''); // trim
