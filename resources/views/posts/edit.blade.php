@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Post</h4>                    
+                    <h4 class="card-title">Editar Mi Post</h4>                    
                 </div>
                 <div class="card-body">
                     {!! Form::model($post, ['route' => ['posts.update', $post], 'method' => 'PUT']) !!}

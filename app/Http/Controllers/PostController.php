@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Category;
+use App\Tag;
+use App\Http\Requests\PostStoreRequest;
+use App\Http\Requests\PostUpdateRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'DESC')->where('status', 'PUBLISHED')->paginate(3);
+        $posts = Post::orderBy('id', 'DESC')
+            ->where('user_id', auth()->user()->id)
+            ->paginate();
 
         return view('posts.index', compact('posts'));
     }
@@ -27,7 +36,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+        $tags = Tag::orderBy('name', 'ASC')->get();
+
+        return view('posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -36,68 +48,66 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Post $post)
+    public function store(PostStoreRequest $request)
     {
         $post = Post::create($request->all());
-        
-        return redirect()->route('posts.edit', $post)->with('info', 'Post guardado exitosamente');
+
+        return redirect()->route('posts.edit', $post->id)->with('info', 'Post creado correctamente'); 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
+        $post = Post::find($id);
+
         return view('posts.show', compact('post'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        return view('posts.edit', compact('post'));
+        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+        $tags = Tag::orderBy('name', 'ASC')->get();
+        $post = Post::find($id);
+
+        return view('posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostUpdateRequest $request, $id)
     {
-        $post->update($request->all());
+        $post = Post::find($id);
+        $post->fill($request->all())->save();
 
-        return redirect()->route('posts.edit', $post)->with('info', 'Post actualizado exitosamente');
+        return redirect()->route('posts.edit', $post->id)->with('info', 'Post actualizado correctamente'); 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Post  $post
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        $post->delete();
+        $post = Post::find($id)->delete();
 
-        return back()->with('info', 'Eliminado exitosamente');
-    }
-
-    public function category($slug)
-    {
-        $category = Category::where('slug', $slug)->pluck('id')->first();
-
-        $posts = Post::where('category_id', $category)->orderBy('id', 'DESC')->where('status', 'PUBLISHED')->paginate(3);
-        
-        return view('posts.index', compact('posts'));
+        return back()->with('info', 'Eliminado correctamente');
     }
 }

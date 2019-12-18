@@ -1,20 +1,57 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app')
+
+@section('content')
+
 <div class="container">
-    <div class="col">
-        <h2>Lista de Posts</h2>
-        @foreach ($posts as $post)
-        <div class="card">
-            @if ($post->file)
-            <img src="{{ $post->file }}" class="card-img-top" />
-            @endif
-            <div class="card-body">
-                <h5 class="card-title">{{ $post->title }}</h5>
-                <p class="card-text">{{ $post->excerpt }}</p>
-                <a href="{{ route('posts.show', $post) }}" class="btn btn-primary float-right">Ver mas...</a>
+    <div class="row justify-content-md-center">
+        <div class="col col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Lista de mis Posts
+                        <a href="{{ route('posts.create') }}" 
+                        class="btn btn-outline-primary btn-sm float-right">
+                        Nueva Post</a>
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th width="10px">ID</th>
+                                <th>Nombre</th>
+                                <th colspan="3">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($posts as $post)
+                                <tr>
+                                    <td>{{ $post->id }}</td>
+                                    <td>{{ $post->title }}</td>
+                                    <td width="10 px">
+                                        <a href="{{ route('posts.show', $post->id) }}"
+                                            class="btn btn-sm btn-secondary">VER</a>
+                                    </td>
+                                    <td width="10 px">
+                                        <a href="{{ route('posts.edit', $post->id) }}" 
+                                            class="btn btn-sm btn-info text-light">EDITAR</a>
+                                    </td>
+                                    <td width="10 px">
+                                        {!! Form::open(['route' => ['posts.destroy', $post->id], 
+                                        'method' => 'DELETE']) !!}
+                                            <button class="btn btn-sm btn-danger">
+                                                ELIMINAR
+                                            </button>
+                                        {!! Form::close() !!}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    {{ $posts->render() }}
+                </div>
             </div>
-        </div><br>
-        @endforeach
-        {{ $posts->render() }}
+        </div>
     </div>
 </div>
+
 @endsection
