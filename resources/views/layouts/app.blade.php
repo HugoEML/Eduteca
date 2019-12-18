@@ -79,6 +79,7 @@
         </nav>
 
         <main class="py-4">
+
             @if (session('info'))
                 <div class="container">
                     <div class="row">
@@ -90,6 +91,23 @@
                     </div>
                 </div>
             @endif
+
+            @if (count($errors))
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             @yield('content')
         </main>
     </div>
