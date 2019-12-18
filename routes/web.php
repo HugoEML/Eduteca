@@ -37,8 +37,8 @@ Route::middleware(['auth'])->group(function() {
     Route::get('roles/{role}/edit', 'RoleController@edit')->name('roles.edit')->middleware('can:roles.edit');
 
     // Posts
-    Route::post('posts/store', 'PostController@store')->name('posts.store')->middleware('can:posts.create');
     Route::get('posts', 'PostController@index')->name('posts.index')->middleware('can:posts.index');
+    Route::post('posts/store', 'PostController@store')->name('posts.store')->middleware('can:posts.create');
     Route::get('posts/create', 'PostController@create')->name('posts.create')->middleware('can:posts.create');
     Route::put('posts/{post}', 'PostController@update')->name('posts.update')->middleware('can:posts.edit');
     Route::get('posts/{post}', 'PostController@show')->name('posts.show')->middleware('can:posts.show');

@@ -31,11 +31,10 @@ class PostUpdateRequest extends FormRequest
             'tags' => 'required|array',
             'description' => 'required',
             'status' => 'required|in:DRAFT,PUBLISHED',
-            'file' => 'file|mimes:jpg,jpeg,png'
         ];
 
-        // if($this->get('file'))
-        //     $rules = array_merge($rules, ['file' => 'mimes:jpg,jpeg,png']);
+        if($this->get('file'))
+             $rules = array_merge($rules, []);
 
         return $rules;
     }
