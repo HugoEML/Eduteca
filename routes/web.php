@@ -15,6 +15,9 @@ Route::redirect('/', 'blog');
 
 Auth::routes();
 
+Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
+Route::get('/callback/{provider}', 'SocialController@callback');
+
 // Web page
 Route::get('blog', 'PageController@blog')->name('blog');
 Route::get('blog/{slug}', 'PageController@post')->name('blog.show');
