@@ -1,4 +1,11 @@
-@extends('layouts.app')
+@extends('admin.layouts.layout')
+
+@section('title', 'Lista de Roles')
+
+@section('breadcrumbs')
+    {{-- <li class="breadcrumb-item"><a href=""></a></li> --}}
+    <li class="breadcrumb-item"><a href="{{ route('roles.index') }}">Roles de Usuario</a></li>
+@endsection
 
 @section('content')
 <div class="container">
@@ -6,12 +13,19 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Roles</h4>
-                    <div class="text-right">
-                        @can('roles.create')
-                        <a class="btn btn-primary" href="{{ route('roles.create') }}">Crear</a>
-                        @endcan
+                    <div class="row">
+                        <div class="col">
+
+                            <h3>Roles</h3>
+                        </div>
+                        <div class="col">
+
+                            @can('roles.create')
+                            <a class="btn btn-dark float-right" href="{{ route('roles.create') }}">Crear</a>
+                            @endcan
+                        </div>
                     </div>
+                    
                 </div>
 
                 <div class="card-body">
@@ -36,7 +50,7 @@
                                 </td>
                                 <td width="10px">
                                     @can('roles.edit')
-                                    <a class="btn btn-sm btn-info" href="{{ route('roles.edit', $role) }}">Editar</a>
+                                    <a class="btn btn-sm btn-outline-info" href="{{ route('roles.edit', $role) }}">Editar</a>
                                     @endcan
                                 </td>
                                 <td width="10px">

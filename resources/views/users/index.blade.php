@@ -1,4 +1,11 @@
-@extends('layouts.app')
+@extends('admin.layouts.layout')
+
+@section('title', 'Lista de Usuarios')
+
+@section('breadcrumbs')
+    {{-- <li class="breadcrumb-item"><a href=""></a></li> --}}
+    <li class="breadcrumb-item"><a href="{{ route('users.index') }}">Usuarios</a></li>
+@endsection
 
 @section('content')
 <div class="container">
@@ -31,7 +38,7 @@
                                 </td>
                                 <td width="10px">
                                     @can('users.edit')
-                                    <a class="btn btn-sm btn-info" href="{{ route('users.edit', $user) }}">Editar</a>
+                                    <a class="btn btn-sm btn-outline-info" href="{{ route('users.edit', $user) }}">Editar</a>
                                     @endcan
                                 </td>
                                 <td width="10px">

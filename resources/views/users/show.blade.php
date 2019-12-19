@@ -1,4 +1,12 @@
-@extends('layouts.app')
+@extends('admin.layouts.layout')
+
+@section('title', 'Usuario')
+
+@section('breadcrumbs')
+    {{-- <li class="breadcrumb-item"><a href=""></a></li> --}}
+    <li class="breadcrumb-item"><a href="{{ route('users.index') }}">Usuarios</a></li>
+    <li class="breadcrumb-item">{{ $user->name }}</li>
+@endsection
 
 @section('content')
 <div class="container">

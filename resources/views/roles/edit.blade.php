@@ -1,4 +1,13 @@
-@extends('layouts.app')
+@extends('admin.layouts.layout')
+
+@section('title', 'Editar Rol')
+
+@section('breadcrumbs')
+    {{-- <li class="breadcrumb-item"><a href=""></a></li> --}}
+    <li class="breadcrumb-item"><a href="{{ route('roles.index') }}">Roles de Usuario</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('roles.show', $role) }}">{{ $role->name }}</a></li>
+    <li class="breadcrumb-item">Editar Rol</li>
+@endsection
 
 @section('content')
 <div class="container">

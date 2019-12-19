@@ -22,6 +22,9 @@ Route::get('category/{slug}', 'PageController@category')->name('category');
 Route::get('tag/{slug}', 'PageController@tag')->name('tag');
 
 // Admin
+Route::get('admin', function(){
+    return view('admin.layouts.dashboard');
+});
 Route::resource('tags', 'TagController');
 Route::resource('categories', 'CategoryController');
 

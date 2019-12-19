@@ -18,5 +18,5 @@
     </ul>
 </div>
 <div class="form-group">
-    {{ Form::submit('Guardar', ['class' => 'btn btn-primary']) }}
+    {{ Form::submit('Guardar', ['class' => 'btn btn-dark float-right']) }}
 </div>
