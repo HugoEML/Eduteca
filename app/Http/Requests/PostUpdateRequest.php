@@ -34,7 +34,7 @@ class PostUpdateRequest extends FormRequest
         ];
 
         if($this->get('file'))
-             $rules = array_merge($rules, []);
+             $rules = array_merge($rules, ['file']);
 
         return $rules;
     }

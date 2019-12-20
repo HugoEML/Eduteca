@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Category;
 use App\Tag;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdateRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -53,9 +53,17 @@ class PostController extends Controller
     {
         $post = Post::create($request->all());
 
-        // Image
+        /* Image
+        if($request->hasFile('file')){
+            $path = $request->file('file');
+            $name = time().$path->getClientOriginalName();
+            $path->move(public_path().'/images/', $name);
+            $post->fill(['file' => asset($path)])->save();
+        }*/
+
+        // IMAGES
         if($request->file('file')){
-            $path = Storage::disk('public')->put('image', $request->file('file'));
+            $path = Storage::disk('public')->put('images', $request->file('file'));
             $post->fill(['file' => asset($path)])->save();
         }
 
@@ -109,9 +117,17 @@ class PostController extends Controller
         $this->authorize('pass', $post);
         $post->fill($request->all())->save();
 
-        // Image
+        /* Image
+        if($request->hasFile('file')){
+            $path = $request->file('file');
+            $name = time().$path->getClientOriginalName();
+            $path->move(public_path().'/images/', $name);
+            $post->fill(['file' => asset($path)])->save();
+        }*/
+
+        // IMAGES
         if($request->file('file')){
-            $path = Storage::disk('public')->put('image', $request->file('file'));
+            $path = Storage::disk('public')->put('images', $request->file('file'));
             $post->fill(['file' => asset($path)])->save();
         }
 
