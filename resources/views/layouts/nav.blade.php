@@ -1,4 +1,4 @@
-@can('posts.index')
+{{-- @can('posts.index')
     <li class="nav-item">
         <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
     </li>
@@ -11,5 +11,10 @@
 @can('roles.index')
     <li class="nav-item">
         <a class="nav-link" href="{{ route('roles.index') }}">Roles</a>
+    </li>
+@endcan --}}
+@can('roles.index')
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('roles.index') }}">Administracion</a>
     </li>
 @endcan

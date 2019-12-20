@@ -36,9 +36,11 @@ class RoleController extends Controller
     {
         $role = Role::create($request->all());
 
-        $role->permissions()->sync($request->get('permissions'));        
+        $role->permissions()->sync($request->get('permissions'));
         
-        return redirect()->route('roles.edit', $role)->with('info', 'Rol guardado exitosamente');
+        alert('Operación exitosa','Se ha creado Rol correctamente', 'success')->showConfirmButton();
+        
+        return redirect()->route('roles.edit', $role);
     }
 
     /**
@@ -79,7 +81,9 @@ class RoleController extends Controller
         // Permission update
         $role->permissions()->sync($request->get('permissions'));
 
-        return redirect()->route('roles.edit', $role)->with('info', 'Rol actualizado exitosamente');
+        alert('Operación exitosa','Se ha actualizado Rol correctamente', 'success')->showConfirmButton();
+
+        return redirect()->route('roles.edit', $role);
     }
 
     /**
@@ -92,6 +96,8 @@ class RoleController extends Controller
     {
         $role->delete();
 
-        return back()->with('info', 'Eliminado exitosamente');
+        alert('Operación exitosa','Se ha eliminado correctamente', 'success')->showConfirmButton();
+
+        return back();
     }
 }

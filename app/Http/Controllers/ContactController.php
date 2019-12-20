@@ -18,7 +18,9 @@ class ContactController extends Controller
         
         Mail::to('gustavomontesinos6@gmail.com')->queue(new MessageReceived($msg));
 
-        return back()->with('info','Recibimos tu mensaje, te responderemos en menos de 24 horas.');
+        alert('Operación exitosa','Recibimos tu mensaje, te responderemos en breve', 'success')->showConfirmButton();
+
+        return back();
 
     }
 }

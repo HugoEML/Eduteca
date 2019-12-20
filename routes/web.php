@@ -28,14 +28,19 @@ Route::get('category/{slug}', 'PageController@category')->name('category');
 Route::get('tag/{slug}', 'PageController@tag')->name('tag');
 
 // Admin
-Route::get('admin', function(){
-    return view('admin.layouts.dashboard');
-});
+// Route::get('admin', function(){
+//     return view('admin.layouts.dashboard');
+// });
 Route::resource('tags', 'TagController');
 Route::resource('categories', 'CategoryController');
 
 // Routes
 Route::middleware(['auth'])->group(function() {
+    // Admin
+    Route::get('admin', function(){
+        return view('admin.layouts.dashboard');
+    })->name('admin')->middleware('can:roles.index');
+
     // Roles
     Route::post('roles/store', 'RoleController@store')->name('roles.store')->middleware('can:roles.create');
     Route::get('roles', 'RoleController@index')->name('roles.index')->middleware('can:roles.index');

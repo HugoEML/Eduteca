@@ -43,9 +43,12 @@
                                 </td>
                                 <td width="10px">
                                     @can('users.destroy')
-                                    {!! Form::open(['route' => ['users.destroy', $user], 'method' => 'DELETE']) !!}
-                                    <button class="btn btn-sm btn-danger">Eliminar</button>
-                                    {!! Form::close() !!}
+                                    <a
+                                        href="#"
+                                        class="btn btn-sm btn-danger"
+                                        onclick="enviar_formulario()"
+                                        >Eliminar</a
+                                    >
                                     @endcan
                                 </td>
                             </tr>
@@ -60,4 +63,36 @@
         </div>
     </div>
 </div>
+<form
+    method="POST"
+    action="{{ route('users.destroy', $user) }}"
+    name="delete_form"
+>
+    @csrf @method('DELETE')
+</form>
+@endsection
+@section('scripts')
+<script>
+    function enviar_formulario() {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(result => {
+            if (result.value) {
+                document.delete_form.submit();
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Cancelled",
+                    text: "Your imaginary file is safe"
+                });
+            }
+        });
+    }
+</script>
 @endsection

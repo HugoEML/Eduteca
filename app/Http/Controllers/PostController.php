@@ -70,7 +70,9 @@ class PostController extends Controller
         // Tags
         $post->tags()->attach($request->get('tags'));
 
-        return redirect()->route('posts.edit', $post->id)->with('info', 'Post creado correctamente'); 
+        alert('Operación exitosa','Se ha guardado correctamente', 'success')->showConfirmButton();
+
+        return redirect()->route('posts.edit', $post->id); 
     }
 
     /**
@@ -134,7 +136,9 @@ class PostController extends Controller
         // Tags
         $post->tags()->sync($request->get('tags'));
 
-        return redirect()->route('posts.edit', $post->id)->with('info', 'Post actualizado correctamente'); 
+        alert('Operación exitosa','Se ha actualizado correctamente', 'success')->showConfirmButton();
+
+        return redirect()->route('posts.edit', $post->id); 
     }
 
     /**
@@ -149,6 +153,8 @@ class PostController extends Controller
         $this->authorize('pass', $post);
         $post->delete();
 
-        return back()->with('info', 'Eliminado correctamente');
+        alert('Operación exitosa','Se ha eliminado correctamente', 'success')->showConfirmButton();
+
+        return back();
     }
 }

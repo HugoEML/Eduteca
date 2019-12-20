@@ -210,6 +210,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script src="https://account.snatchbot.me/script.js"></script><script>window.sntchChat.Init(84464)</script>
 
-@yield('scripts')
+<script src="{{ asset('vendor/swal/sweetalert2.all.min.js') }}"></script>
+    @include('sweetalert::alert')
+    @yield('scripts')
 </body>
 </html>

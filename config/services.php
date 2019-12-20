@@ -35,15 +35,15 @@ return [
     ],
 
     'google' => [
-        'client_id' => '398018616768-bldr5dfb5suuj0um4q7doqn9ta8d3o5l.apps.googleusercontent.com',
-        'client_secret' => '79vN_ZCZOI0r9caq0tLGFJUT',
-        'redirect' => 'http://localhost:8000/callback/google',
+        'client_id' => env('GOOGLE_ID'),
+        'client_secret' => env('GOOGLE_SECRET'),
+        'redirect' => env('GOOGLE_URL'),
     ],
     
     'github' => [
-        'client_id' => '418b4d973f76e2b89364',
-        'client_secret' => 'a4aa44f952aabbddc3482d044ecfad8ccf43a383',
-        'redirect' => 'http://localhost:8000/callback/github',
+        'client_id' => env('GITHUB_ID'),
+        'client_secret' => env('GITHUB_SECRET'),
+        'redirect' => env('GITHUB_URL'),
     ], 
 
 ];

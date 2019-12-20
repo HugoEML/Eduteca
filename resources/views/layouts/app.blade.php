@@ -87,18 +87,6 @@
 
         <main class="py-4">
 
-            @if (session('info'))
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="alert alert-success">
-                                {{ session('info') }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
-
             @if (count($errors))
                 <div class="container">
                     <div class="row">
@@ -118,7 +106,9 @@
             @yield('content')
         </main>
     </div>
-    
+
+    <script src="{{ asset('vendor/swal/sweetalert2.all.min.js') }}"></script>
+    @include('sweetalert::alert')
     @yield('scripts')
 
 </body>
