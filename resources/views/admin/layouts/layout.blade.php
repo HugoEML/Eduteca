@@ -208,6 +208,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="/adminlte/js/adminlte.min.js"></script>
 
+<script src="https://account.snatchbot.me/script.js"></script><script>window.sntchChat.Init(84464)</script>
+
 @yield('scripts')
 </body>
 </html>

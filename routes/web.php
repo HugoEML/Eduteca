@@ -10,10 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::view('/contact', 'contact')->name('contact');
+Route::post('contact', 'ContactController@store')->name('contact.store');
 
 Route::redirect('/', 'blog');
 
 Auth::routes();
+
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');

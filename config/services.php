@@ -30,6 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'sendgrid' => [
+        'api_key' => env('SENDGRID_API_KEY'),
+    ],
+
     'google' => [
         'client_id' => '398018616768-bldr5dfb5suuj0um4q7doqn9ta8d3o5l.apps.googleusercontent.com',
         'client_secret' => '79vN_ZCZOI0r9caq0tLGFJUT',
